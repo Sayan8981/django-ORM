@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from phonenumber_field.modelfields import PhoneNumberField
 
 class Student(models.Model):
@@ -13,6 +14,9 @@ class Student(models.Model):
             
     def __str__(self):
         return self.name
+    
+    def get_post_url(self):
+        return reverse('post_edit', kwargs={'pk': self.pk})
     
 class Student_details(models.Model):
     mob_no = PhoneNumberField(blank=False, help_text='Contact phone number')
