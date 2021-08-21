@@ -1,0 +1,27 @@
+<form action="http://127.0.0.1:8080/blog_posts/new" method="POST"> {% csrf_token %}
+    <div class="container mt-5">
+        <div class="mb-3">
+            <label for="name" class="form-label">name: </label>
+            <input type="text" class="form-control" id="name" name="name">
+        </div>
+        <br>
+        <div class="mb-3">
+            <label for="roll_no" class="form-label">roll_no: </label>
+            <input type="number" class="form-control" id="roll_no" name="roll_no">
+        </div>
+        <br>
+        <div class="mb-3">
+            <label for="stud_class" class="form-label">stud_class: </label>
+            <input type="number" class="form-control" id="stud_class" name="stud_class">
+        </div>
+        <br>
+        <div class="mb-3">
+            <label for="department" class="form-label">department: </label>
+            <input type="text" class="form-control" id="department" name="department">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <br><br>
+        <button type="home" class="btn btn-primary"><a href="http://127.0.0.1:8080/blog_posts/home">Home</a></button>
+    </div>
+</form>

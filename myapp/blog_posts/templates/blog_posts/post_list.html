@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset=“utf-8”>
+
+    <link rel=“stylesheet” href=“https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css”>
+
+    <title>Student Database</title>
+
+</head>
+
+<body>
+
+    <div class=“container”>
+
+        <h1>Student List</h1>
+        {% if messages %} {% for message in messages %}
+        <div class="container-fluid p-0">
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button> {{ message }}
+            </div>
+        </div>
+        {% endfor %} {% endif %}
+
+        <ul>
+
+            {% for post in object_list %}
+
+            <li>
+                <p>St. ID : {{post.id}} </p>
+
+                <p>Name: {{post.name}} </p>
+
+                <p>Roll_no: {{post.roll_no}} </p>
+
+                <p>Student_class: {{post.stud_class}} </p>
+
+                <p>Department: {{post.department}} </p>
+
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+        <button><a href="http://127.0.0.1:8080/blog_posts/new">Create new student record</a></button>
+
+
+</body>
+
+</html>

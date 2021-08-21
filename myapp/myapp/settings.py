@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_truncate', #python3 manage.py truncate --apps <app_name> --models <model_name>
     'phonenumber_field',
-    'myapp',
+    'blog_posts',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +60,7 @@ ROOT_URLCONF = 'myapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,"templates/blog_posts")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
