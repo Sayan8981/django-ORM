@@ -4,43 +4,68 @@
 
 <head>
 
-    <meta charset=“utf-8”>
-
-    <link rel=“stylesheet” href=“https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css”>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <title>Student Database</title>
 
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <form class="form-inline" action="">
+            <input class="form-control mr-sm-2" type="number" placeholder="Search student ID">
+            <button class="btn btn-success" type="submit">Search</button>
+        </form>
 
-    <div class=“container”>
-
-        <h1>Student List</h1>
-
-        <ul>
-
-            {% for post in object_list %}
-
-            <li>
-                <p>St. ID : {{post.id}} </p>
-
-                <p>Name: {{post.name}} </p>
-
-                <p>Roll_no: {{post.roll_no}} </p>
-
-                <p>Student_class: {{post.stud_class}} </p>
-
-                <p>Department: {{post.department}} </p>
-
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
             </li>
-
-            {% endfor %}
-
+            <li class="nav-item">
+                <a class="nav-link" href="#">Databases</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://127.0.0.1:8080/blog_posts/new">Create Student Record</a>
+            </li>
         </ul>
+    </nav>
 
-        <button><a href="http://127.0.0.1:8080/blog_posts/new">Create new student record</a></button>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8 col-md-8 col-lg-6 pb-2">
+                <h1>Student List</h1>
 
+                <ul>
+
+                    {% for post in object_list %}
+
+                    <li>
+                        <h5>St. ID : {{post.id}} </h5>
+
+                        <p>Name: {{post.name}} </p>
+
+                        <p>Roll_no: {{post.roll_no}} </p>
+
+                        <p>Student_class: {{post.stud_class}} </p>
+
+                        <p>Department: {{post.department}} </p>
+
+                    </li>
+
+                    {% endfor %}
+
+                </ul>
+
+                <button button type="button" class="btn btn-link"><a href="http://127.0.0.1:8080/blog_posts/new">Create new student record</a></button>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6">
+            </div>
+        </div>
+    </div>
 
 </body>
 
