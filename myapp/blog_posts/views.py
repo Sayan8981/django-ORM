@@ -25,7 +25,7 @@ def post_create(request, template_name='blog_posts/post_form.html'):
         roll_no = request.POST['roll_no']
         stud_class = request.POST['stud_class']
         department = request.POST['department']
-        import pdb;pdb.set_trace()
+
         record = Student.objects.all()
         for data in record:
             if data.name == name:
