@@ -16,28 +16,36 @@
 
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <form class="form-inline" action="">
-            <input class="form-control mr-sm-2" type="number" placeholder="Search student ID">
-            <button class="btn btn-success" type="submit">Search</button>
+        <form class="form-inline" action="http://127.0.0.1:8080/blog_posts/search" method="POST"> {% csrf_token %}
+            <div class="container">
+                <div class="mb-1">
+                    <input class="query-search" id="search" name="search" type="number" placeholder="Search student ID">
+                    <button class="search-btn">Search</button>
+                </div>
+            </div>
         </form>
 
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Home</a>
+        <ul class="navbar-nav ">
+            <li class="nav-item ">
+                <a class="nav-link " href="http://127.0.0.1:8080/blog_posts/home ">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Databases</a>
+            <li class="nav-item ">
+                <a class="nav-link " href="http://127.0.0.1:8080/admin ">Admin Dashboard</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="http://127.0.0.1:8080/blog_posts/new">Create Student Record</a>
+            <li class="nav-item ">
+                <a class="nav-link " href="# ">Databases</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link " href="http://127.0.0.1:8080/blog_posts/new ">Create Student Record</a>
             </li>
         </ul>
     </nav>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-8 col-md-8 col-lg-6 pb-2">
-                <h1>Student List</h1>
+    <div class="container-fluid ">
+        <div class="row ">
+            <div class="col-sm-8 col-md-8 col-lg-6 pb-2 ">
+
+                <h3>Student Lists</h3>
 
                 <ul>
 
@@ -60,9 +68,9 @@
 
                 </ul>
 
-                <button button type="button" class="btn btn-link"><a href="http://127.0.0.1:8080/blog_posts/new">Create new student record</a></button>
+                <button button type="button " class="btn btn-link "><a href="http://127.0.0.1:8080/blog_posts/new ">Create new student record</a></button>
             </div>
-            <div class="col-sm-12 col-md-12 col-lg-6">
+            <div class="col-sm-12 col-md-12 col-lg-6 ">
             </div>
         </div>
     </div>
