@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 # from django.forms import ModelForm
 import re
+from django.views.generic import View
 from django.contrib import messages
 from .models import Student
 # Create your views here.
@@ -48,6 +49,19 @@ def post_create(request, template_name='blog_posts/post_form.html'):
             user = Student(name = name, roll_no = roll_no, stud_class = stud_class, department = department)
             user.save()
     return render(request, template_name)
+
+class search_id(View):
+    
+    def post(self, request):
+        if request.method == 'POST':
+            posts = Student.objects.filter(pk = request.POST.get('search'))
+            if posts.exists():
+                data = {}
+                data['object_list'] = posts
+                return render(request, 'blog_posts/post_list.html', data)
+            else:
+                return render(request, 'blog_posts/post_list.html')
+        
 
 # def post_update(request, pk, template_name='post_form.html'):
 #     post = get_object_or_404(Student, pk=pk)
