@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 import re
 from django.views.generic import View
 from django.contrib import messages
+from django.contrib.messages import get_messages
 from .models import Student
 # Create your views here.
 
@@ -21,6 +22,10 @@ def post_list(request, template_name='blog_posts/post_list.html'):
 
 def post_create(request, template_name='blog_posts/post_form.html'):
     flag = True
+    storage = get_messages(request)
+    for message in storage:
+        print (message)
+        message.clear()
     if request.method == 'POST':
         name = request.POST['name']
         roll_no = request.POST['roll_no']
@@ -44,10 +49,10 @@ def post_create(request, template_name='blog_posts/post_form.html'):
             elif re.findall('[0-9]+', department):
                 messages.error(request, 'Department should contains name of the department like <Science/Commerce....>!')
                 flag = False
-                break    
+                break 
         if not messages or flag == True:
             user = Student(name = name, roll_no = roll_no, stud_class = stud_class, department = department)
-            user.save()
+            user.save()    
     return render(request, template_name)
 
 class search_id(View):

@@ -30,47 +30,72 @@
                 <a class="nav-link " href="http://127.0.0.1:8080/blog_posts/home ">Home</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link " href="http://127.0.0.1:8080/admin ">Admin Dashboard</a>
+                <a class="nav-link " href="http://127.0.0.1:8080/admin">Admin Dashboard</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link " href="# ">Databases</a>
+                <a class="nav-link " href="http://127.0.0.1:8080/blog_posts/new">Create Student Record</a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link " href="http://127.0.0.1:8080/blog_posts/new ">Create Student Record</a>
+                <a class="nav-link " href="#">Update Student Record</a>
             </li>
+            <li class="nav-item ">
+                <a class="nav-link " href="#">Add / Update Student Details</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link " href="#">Add / update Student Subjects</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link " href="#">Library Room</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link " href="#">Help Desk</a>
+            </li>
+            <li class="nav-item ">
+                <a class="nav-link " href="#">Contact</a>
+            </li>
+
         </ul>
     </nav>
 
-    <div class="container-fluid ">
-        <div class="row ">
-            <div class="col-sm-8 col-md-8 col-lg-6 pb-2 ">
-
-                <h3>Student Lists</h3>
-
-                <ul>
-
-                    {% for post in object_list %}
-
-                    <li>
-                        <h5>St. ID : {{post.id}} </h5>
-
-                        <p>Name: {{post.name}} </p>
-
-                        <p>Roll_no: {{post.roll_no}} </p>
-
-                        <p>Student_class: {{post.stud_class}} </p>
-
-                        <p>Department: {{post.department}} </p>
-
-                    </li>
-
-                    {% endfor %}
-
-                </ul>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <br>
+                <h3 class="text-center">Student Lists</h3>
+                <table class="table table-bordered table-striped table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>St. ID</th>
+                            <th>Name</th>
+                            <th>Student Roll No</th>
+                            <th>Student Class No.</th>
+                            <th>Student Dept.</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for post in object_list %}
+                        <tr>
+                            <td>
+                                {{post.id}}
+                            </td>
+                            <td>
+                                {{post.name}}
+                            </td>
+                            <td>
+                                {{post.roll_no}}
+                            </td>
+                            <td>
+                                {{post.stud_class}}
+                            </td>
+                            <td>
+                                {{post.department}}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
 
                 <button button type="button " class="btn btn-link "><a href="http://127.0.0.1:8080/blog_posts/new ">Create new student record</a></button>
-            </div>
-            <div class="col-sm-12 col-md-12 col-lg-6 ">
             </div>
         </div>
     </div>
