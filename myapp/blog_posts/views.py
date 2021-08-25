@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-# from django.forms import ModelForm
+from django.forms import ModelForm
 import re
-from django.views.generic import View
+from django.views.generic import View, UpdateView
 from django.contrib import messages
 from django.contrib.messages import get_messages
 from .models import Student
@@ -11,7 +11,7 @@ from .models import Student
 # class PostsForm(ModelForm):
 #     class Meta:
 #         model = Student
-#         fields = ['name', 'roll_no', 'stud_class', 'department']
+#         fields = ['id', 'name', 'roll_no', 'stud_class', 'department']
 
 def post_list(request, template_name='blog_posts/post_list.html'):
     posts = Student.objects.all()
@@ -20,12 +20,15 @@ def post_list(request, template_name='blog_posts/post_list.html'):
     data['object_list'] = posts
     return render(request, template_name, data)
 
+def update_list(request, template_name='blog_posts/student_record_edit.html'):
+    posts = Student.objects.all()
+    #import pdb;pdb.set_trace()
+    data = {}
+    data['object_list'] = posts
+    return render(request, template_name, data)
+
 def post_create(request, template_name='blog_posts/post_form.html'):
     flag = True
-    storage = get_messages(request)
-    for message in storage:
-        print (message)
-        message.clear()
     if request.method == 'POST':
         name = request.POST['name']
         roll_no = request.POST['roll_no']
@@ -66,9 +69,14 @@ class search_id(View):
                 return render(request, 'blog_posts/post_list.html', data)
             else:
                 return render(request, 'blog_posts/post_list.html')
+class StudentUpdateView(UpdateView):
+    model = Student
+    template_name = "blog_posts/student_update_record_form.html"
+    fields = ['name', 'roll_no', 'stud_class', 'department']
+    slug_field = "id"
+    success_url ="/blog_posts/home"
         
-
-# def post_update(request, pk, template_name='post_form.html'):
+# def post_update(request, pk, template_name='student_record_edit.html'):
 #     post = get_object_or_404(Student, pk=pk)
 #     form = PostsForm(request.POST or None, instance=post)
 #     if form.is_valid():

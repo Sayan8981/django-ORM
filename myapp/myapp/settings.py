@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 #pip3 install django-phone-field
 #pip3 install djang0-truncate
-#pip install django-phonenumber-field[phonenumbers]
-
+#pip3 install django-phonenumber-field[phonenumbers
+#pip3 install django-crispy-forms
 
 import os
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_truncate', #python3 manage.py truncate --apps <app_name> --models <model_name>
     'phonenumber_field',
+    'crispy_forms',
     'blog_posts',
 ]
 
