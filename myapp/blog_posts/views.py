@@ -69,7 +69,7 @@ class search_id(View):
             if posts.exists():
                 data = {}
                 data['object_list'] = posts
-                return render(request, 'blog_posts/post_list.html', data)
+                return render(request, 'blog_posts/student_record_edit.html', data)
             else:
                 return render(request, 'blog_posts/post_list.html')
             
