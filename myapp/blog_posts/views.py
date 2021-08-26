@@ -75,18 +75,3 @@ class StudentUpdateView(UpdateView):
     fields = ['name', 'roll_no', 'stud_class', 'department']
     slug_field = "id"
     success_url ="/blog_posts/home"
-        
-# def post_update(request, pk, template_name='student_record_edit.html'):
-#     post = get_object_or_404(Student, pk=pk)
-#     form = PostsForm(request.POST or None, instance=post)
-#     if form.is_valid():
-#         form.save()
-#         return redirect('blog_posts:post_list')
-#     return render(request, template_name, {'form': form})
-
-# def post_delete(request, pk, template_name='post_delete.html'):
-#     post = get_object_or_404(Student, pk=pk)
-#     if request.method=='POST':
-#         post.delete()
-#         return redirect('Student:post_list')
-#     return render(request, template_name, {'object': post})
