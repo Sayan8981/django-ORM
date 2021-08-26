@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.forms import ModelForm
 import re
-from django.views.generic import View, UpdateView
+from django.views.generic import View, UpdateView, DeleteView
 from django.contrib import messages
 from django.contrib.messages import get_messages
 from .models import Student
@@ -53,9 +53,12 @@ def post_create(request, template_name='blog_posts/post_form.html'):
                 messages.error(request, 'Department should contains name of the department like <Science/Commerce....>!')
                 flag = False
                 break 
-        if not messages or flag == True:
-            user = Student(name = name, roll_no = roll_no, stud_class = stud_class, department = department)
-            user.save()    
+        try:    
+            if not messages or flag == True:
+                user = Student(name = name, roll_no = roll_no, stud_class = stud_class, department = department)
+                user.save()
+        except Exception as error:
+            messages.error(request, str(error))            
     return render(request, template_name)
 
 class search_id(View):
@@ -69,9 +72,16 @@ class search_id(View):
                 return render(request, 'blog_posts/post_list.html', data)
             else:
                 return render(request, 'blog_posts/post_list.html')
+            
 class StudentUpdateView(UpdateView):
     model = Student
     template_name = "blog_posts/student_update_record_form.html"
     fields = ['name', 'roll_no', 'stud_class', 'department']
     slug_field = "id"
+    success_url ="/blog_posts/home"
+    
+class StudentDeleteView(DeleteView):
+    # specify the model you want to use
+    model = Student
+    template_name = "blog_posts/student_record_delete.html"
     success_url ="/blog_posts/home"

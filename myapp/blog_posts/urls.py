@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^new$', views.post_create, name='post_new'),
     url(r'^search$', views.search_id.as_view(), name='search'),
     url(r'^update_record/(?P<pk>\d+)/$', views.StudentUpdateView.as_view(), name='update_record'),
+    url(r'^delete_record/(?P<pk>\d+)/$', views.StudentDeleteView.as_view(), name='delete_record'),
     
     ]

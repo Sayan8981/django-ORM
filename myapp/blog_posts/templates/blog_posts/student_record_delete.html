@@ -1,0 +1,11 @@
+{% extends 'blog_posts/main.html' %} {% block content %}
+<div class="container-fluid">
+    <form method="post">{% csrf_token %}
+
+
+        <p>Are you sure you want to delete "{{ object }}" details?</p>
+
+
+        <input type="submit" value="Confirm">
+</div>
+</form> {% endblock %}

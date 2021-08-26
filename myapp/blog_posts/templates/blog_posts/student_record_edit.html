@@ -13,6 +13,7 @@
                         <th>Student Class No.</th>
                         <th>Student Dept.</th>
                         <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,6 +35,7 @@
                             {{post.department}}
                         </td>
                         <td><small><a href="{% url 'update_record' post.id %}">(Edit)</a></small></td>
+                        <td><small><a href="{% url 'delete_record' post.id %}">(Delete)</a></small></td>
                     </tr>
                     {% endfor %}
                 </tbody>
