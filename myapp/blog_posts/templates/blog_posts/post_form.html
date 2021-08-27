@@ -1,9 +1,5 @@
 {% extends 'blog_posts/main.html' %} {% block content %}
-<style>
-    body {
-        background-color: rgba(92, 163, 54, 0.425);
-    }
-</style>
+
 <form action="http://127.0.0.1:8080/blog_posts/new" method="POST"> {% csrf_token %} {% if messages %} {% for message in messages %}
     <div class="container-fluid p-0">
         <div class="alert {{ message.tags }} alert-dismissible" role="alert">

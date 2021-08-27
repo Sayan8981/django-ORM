@@ -1,0 +1,15 @@
+.container-fluid p-0 {
+    color: black;
+}
+
+input[type=email] {
+    width: 80%;
+}
+
+input[type=text],
+textarea {
+    width: 100%;
+    padding: 32px 20px;
+    margin: 8px 0;
+    display: inline-block;
+}

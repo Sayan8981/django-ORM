@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin.options import ModelAdmin
-from .models import Book_list, Student, Student_Subject, Student_details
+from .models import Book_list, Student, Student_Subject, Student_details, Contact
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
@@ -21,3 +21,8 @@ class StudentSubjectAdmin(admin.ModelAdmin):
 class BookListAdmin(admin.ModelAdmin):
     list_filter = ('student__name',)
     list_display = ('book_name',)
+    
+@admin.register(Contact)
+class ContactAdmin(admin.ModelAdmin):
+    list_filter = ('email',)
+    list_display = ('email','subject','message',)    

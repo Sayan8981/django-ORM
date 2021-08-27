@@ -4,7 +4,7 @@ import re
 from django.views.generic import View, UpdateView, DeleteView
 from django.contrib import messages
 from django.contrib.messages import get_messages
-from .models import Student
+from .models import Student, Contact
 # Create your views here.
 
 
@@ -18,6 +18,9 @@ student_record_edit_template = 'blog_posts/student_record_edit.html'
 student_record_create_template = 'blog_posts/post_form.html'
 student_record_delete_template = "blog_posts/student_record_delete.html"
 reverse_success_url = "/blog_posts/home"
+contact_template = 'blog_posts/contact.html'
+contact_success_template ='blog_posts/contact_success.html'
+contact_unsuccess_template = 'blog_posts/contact_unsuccess.html'
 
 def post_list(request, template_name=student_list_template):
     posts = Student.objects.all()
@@ -89,3 +92,21 @@ class StudentDeleteView(DeleteView):
     model = Student
     template_name = student_record_delete_template
     success_url = reverse_success_url
+    
+class ContactForm(ModelForm):
+    class Meta:
+        model = Contact
+        fields = '__all__'    
+    
+def contact_view(request):
+    if request.method == 'POST':
+        try:
+            form = ContactForm(request.POST)
+            form.save()
+            return render(request, contact_success_template)
+        except Exception as e:
+            return render(request, contact_unsuccess_template)    
+
+    form = ContactForm()
+    context = {'form': form}
+    return render(request, contact_template, context)
