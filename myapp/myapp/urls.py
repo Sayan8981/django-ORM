@@ -22,6 +22,8 @@ Including another URLconf
 
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 #from blog_posts.views import home
 
 from django.conf.urls import url, include
@@ -30,5 +32,8 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^blog_posts/', include('blog_posts.urls')),
-    # #url(r'^$', home, name='home' ),
 ]
+
+# if settings.DEBUG:
+#     urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
+    

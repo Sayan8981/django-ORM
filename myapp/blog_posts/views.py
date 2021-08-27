@@ -12,22 +12,28 @@ from .models import Student
 #     class Meta:
 #         model = Student
 #         fields = ['id', 'name', 'roll_no', 'stud_class', 'department']
+student_update_record_template = "blog_posts/student_update_record_form.html" 
+student_list_template = 'blog_posts/post_list.html'
+student_record_edit_template = 'blog_posts/student_record_edit.html'
+student_record_create_template = 'blog_posts/post_form.html'
+student_record_delete_template = "blog_posts/student_record_delete.html"
+reverse_success_url = "/blog_posts/home"
 
-def post_list(request, template_name='blog_posts/post_list.html'):
+def post_list(request, template_name=student_list_template):
     posts = Student.objects.all()
     #import pdb;pdb.set_trace()
     data = {}
     data['object_list'] = posts
     return render(request, template_name, data)
 
-def update_list(request, template_name='blog_posts/student_record_edit.html'):
+def update_list(request, template_name=student_record_edit_template):
     posts = Student.objects.all()
     #import pdb;pdb.set_trace()
     data = {}
     data['object_list'] = posts
     return render(request, template_name, data)
 
-def post_create(request, template_name='blog_posts/post_form.html'):
+def post_create(request, template_name=student_record_create_template):
     flag = True
     if request.method == 'POST':
         name = request.POST['name']
@@ -60,7 +66,6 @@ def post_create(request, template_name='blog_posts/post_form.html'):
         except Exception as error:
             messages.error(request, str(error))            
     return render(request, template_name)
-
 class search_id(View):
     
     def post(self, request):
@@ -69,19 +74,18 @@ class search_id(View):
             if posts.exists():
                 data = {}
                 data['object_list'] = posts
-                return render(request, 'blog_posts/student_record_edit.html', data)
+                return render(request, student_record_edit_template, data)
             else:
-                return render(request, 'blog_posts/post_list.html')
-            
+                return render(request, student_list_template)           
 class StudentUpdateView(UpdateView):
     model = Student
-    template_name = "blog_posts/student_update_record_form.html"
+    template_name = student_update_record_template
     fields = ['name', 'roll_no', 'stud_class', 'department']
     slug_field = "id"
-    success_url ="/blog_posts/home"
+    success_url = reverse_success_url
     
 class StudentDeleteView(DeleteView):
     # specify the model you want to use
     model = Student
-    template_name = "blog_posts/student_record_delete.html"
-    success_url ="/blog_posts/home"
+    template_name = student_record_delete_template
+    success_url = reverse_success_url

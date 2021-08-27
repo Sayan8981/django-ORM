@@ -1,12 +1,13 @@
 {% extends 'blog_posts/main.html' %} {% block content %} {% load crispy_forms_tags %}
 <div class="container  p-5">
-    <form method="post">
+    <form method="post" style="background-color:#af8696">
         {% csrf_token %}
         <div class="row justify-content-center">
             <div class="col-lg-6 col-md-12">
                 {{form|crispy}}
                 <br>
                 <input type="submit" value="Save" class="btn btn-success">
+                <input type="submit" value="Cancel" class="btn">
             </div>
         </div>
     </form>
