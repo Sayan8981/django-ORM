@@ -1,0 +1,18 @@
+body {
+    background-color: rgba(92, 163, 54, 0.425);
+}
+
+.container {
+    align-items: center;
+    justify-content: center
+}
+
+.bg {
+    /* The image used */
+    /* Full height */
+    height: 100%;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

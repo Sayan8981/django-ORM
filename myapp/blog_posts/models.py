@@ -58,7 +58,19 @@ class Book_list(models.Model):
         ordering = ['book_name']
     
     def __str__(self):
-        return self.book_name    
+        return self.book_name  
+    
+class Contact(models.Model):
+    email = models.EmailField(blank = True, unique=True)
+    subject = models.CharField(max_length=255)
+    message = models.TextField(blank = True)
+    
+    class Meta:
+        managed = True
+        ordering = ['email']
+
+    def __str__(self):
+        return self.email      
     
     
         
