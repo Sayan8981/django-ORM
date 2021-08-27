@@ -1,10 +1,10 @@
-{% extends 'blog_posts/main.html' %} {% block content %}
+{% extends 'blog_posts/main.html' %} {% block content %} {% load static %}
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <br>
             <h3 class="text-center">Student Lists</h3>
-            <table class="table table-bordered table-striped table-hover">
+            <table class="table table-bordered table-striped table-hover" background="{% static 'blog_posts/image/bbva-educacion.jpg' %}">
                 <thead class="thead-dark">
                     <tr>
                         <th>St. ID</th>
@@ -18,19 +18,19 @@
                     {% for post in object_list %}
                     <tr>
                         <td>
-                            {{post.id}}
+                            <strong> {{post.id}} </strong>
                         </td>
                         <td>
-                            {{post.name}}
+                            <strong> {{post.name}} </strong>
                         </td>
                         <td>
-                            {{post.roll_no}}
+                            <strong> {{post.roll_no}} </strong>
                         </td>
                         <td>
-                            {{post.stud_class}}
+                            <strong> {{post.stud_class}} </strong>
                         </td>
                         <td>
-                            {{post.department}}
+                            <strong> {{post.department}} </strong>
                         </td>
                     </tr>
                     {% endfor %}
