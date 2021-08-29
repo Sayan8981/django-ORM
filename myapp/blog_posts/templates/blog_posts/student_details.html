@@ -1,0 +1,66 @@
+{% extends 'blog_posts/main.html' %} {% block content %} {% load static %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <h3 class="text-center">Student Lists</h3>
+            <table class="table table-bordered table-striped table-hover" background="{% static 'blog_posts/image/student_details2.jpg' %}">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>St. ID</th>
+                        <th>Name</th>
+                        <th>Student Mob No.</th>
+                        <th>Student address</th>
+                        <th>Student Dept.</th>
+                        <th>Student Father Name</th>
+                        <th>Student Mother Name</th>
+                        <th>Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in object_list %}
+                    <tr>
+                        <td>
+                            <strong> {{post.id}} </strong>
+                        </td>
+                        <td>
+                            <strong> {{post.student.name}} </strong>
+                        </td>
+                        <td>
+                            <strong> {{post.mob_no}} </strong>
+                        </td>
+                        <td>
+                            <strong> {{post.address}} </strong>
+                        </td>
+                        <td>
+                            <strong> {{post.student.department}} </strong>
+                        </td>
+                        <td>
+                            <strong> {{post.father_name}} </strong>
+                        </td>
+                        <td>
+                            <strong> {{post.mother_name}} </strong>
+                        </td>
+                        <td><small><a href="">(Edit)</a></small> / <small><a href="">(Delete)</a></small></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="container">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </div>
+            <button button type="button " class="btn btn-link "><a href="http://127.0.0.1:8080/blog_posts/new">Create new student details</a></button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+</body>
+
+</html>

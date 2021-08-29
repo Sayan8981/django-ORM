@@ -4,7 +4,7 @@ import re
 from django.views.generic import View, UpdateView, DeleteView
 from django.contrib import messages
 from django.contrib.messages import get_messages
-from .models import Student, Contact
+from .models import Student, Contact, Student_details
 # Create your views here.
 
 
@@ -21,6 +21,7 @@ reverse_success_url = "/blog_posts/home"
 contact_template = 'blog_posts/contact.html'
 contact_success_template ='blog_posts/contact_success.html'
 contact_unsuccess_template = 'blog_posts/contact_unsuccess.html'
+student_detail_template = 'blog_posts/student_details.html'
 
 def post_list(request, template_name=student_list_template):
     posts = Student.objects.all()
@@ -106,7 +107,13 @@ def contact_view(request):
             return render(request, contact_success_template)
         except Exception as e:
             return render(request, contact_unsuccess_template)    
-
     form = ContactForm()
     context = {'form': form}
     return render(request, contact_template, context)
+
+def post_student_details(request, template_name=student_detail_template):
+    student_data = Student_details.objects.all()
+    data = {}
+    data['object_list'] = student_data
+    return render(request, template_name, data)
+    
