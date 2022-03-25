@@ -1,0 +1,8 @@
+- pip3 install django_truncate
+- pip3 install django-phonenumber-field
+- pip3 install django-crispy-forms
+- sudo pip3 install psycopg2-binary
+- pip3 install django-phonenumbers
+- sudo apt install postgresql postgresql-contrib
+- pip3 install django_truncate
+- pip3 install django-livereload-server
