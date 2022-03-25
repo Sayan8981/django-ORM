@@ -20,10 +20,7 @@ Including another URLconf
 #     path('admin/', admin.site.urls),
 # ]
 
-from django.conf.urls import url, include
-from django.contrib import admin
-
-from django.conf.urls import url, include
+from django.urls import include, re_path as url
 from django.contrib import admin
 
 urlpatterns = [

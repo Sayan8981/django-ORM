@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.forms import ModelForm
 import re
-from django.views.generic import View, UpdateView, DeleteView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic import View, UpdateView, DeleteView, ListView
 from django.contrib import messages
 from django.contrib.messages import get_messages
 from .models import Student, Contact, Student_details
@@ -24,11 +25,23 @@ contact_unsuccess_template = 'blog_posts/contact_unsuccess.html'
 student_detail_template = 'blog_posts/student_details.html'
 
 def post_list(request, template_name=student_list_template):
-    posts = Student.objects.all()
+    student_list = Student.objects.all()
     #import pdb;pdb.set_trace()
-    data = {}
-    data['object_list'] = posts
-    return render(request, template_name, data)
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(student_list, 10)
+    try:
+        students = paginator.page(page)
+    except PageNotAnInteger:
+        students = paginator.page(1)
+    except EmptyPage:
+        students = paginator.page(paginator.num_pages)
+
+    return render(request, template_name, { 'students': students })
+
+# def pagination(request):
+#     student_list = Student.objects.all()
+
 
 def update_list(request, template_name=student_record_edit_template):
     posts = Student.objects.all()
@@ -70,6 +83,7 @@ def post_create(request, template_name=student_record_create_template):
         except Exception as error:
             messages.error(request, str(error))            
     return render(request, template_name)
+
 class search_id(View):
     
     def post(self, request):
@@ -81,6 +95,7 @@ class search_id(View):
                 return render(request, student_record_edit_template, data)
             else:
                 return render(request, student_list_template)           
+
 class StudentUpdateView(UpdateView):
     model = Student
     template_name = student_update_record_template
