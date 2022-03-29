@@ -24,38 +24,28 @@ contact_success_template ='blog_posts/contact_success.html'
 contact_unsuccess_template = 'blog_posts/contact_unsuccess.html'
 student_detail_template = 'blog_posts/student_details.html'
 
-def post_list(request, template_name=student_list_template):
-    student_list = Student.objects.all()
-    #import pdb;pdb.set_trace()
+def pagination(request, item_size, student_data):
     page = request.GET.get('page', 1)
-
-<<<<<<< HEAD
-    paginator = Paginator(student_list, 6)
-=======
-    paginator = Paginator(student_list, 10)
->>>>>>> db454fe800e03e71b84b01fe5c26642694a077d0
+    paginator = Paginator(student_data, item_size)
     try:
         students = paginator.page(page)
+        # import pdb;pdb.set_trace()
     except PageNotAnInteger:
         students = paginator.page(1)
     except EmptyPage:
         students = paginator.page(paginator.num_pages)
+    return students    
+
+def post_list(request, template_name=student_list_template):
+    student_list = Student.objects.all()
+    students = pagination(request, 6, student_list)
 
     return render(request, template_name, { 'students': students })
-<<<<<<< HEAD
-=======
-
-# def pagination(request):
-#     student_list = Student.objects.all()
-
->>>>>>> db454fe800e03e71b84b01fe5c26642694a077d0
 
 def update_list(request, template_name=student_record_edit_template):
     posts = Student.objects.all()
-    #import pdb;pdb.set_trace()
-    data = {}
-    data['object_list'] = posts
-    return render(request, template_name, data)
+    students = pagination(request, 6, posts)
+    return render(request, template_name, {'students': students})
 
 def post_create(request, template_name=student_record_create_template):
     flag = True
@@ -137,16 +127,6 @@ def post_student_details(request, template_name=student_detail_template):
     student_data = Student_details.objects.all().order_by('id')
     # data = {}
     # data['object_list'] = student_data
-    page = request.GET.get('page', 1)
-    paginator = Paginator(student_data, 5)
-    try:
-        students = paginator.page(page)
-        # import pdb;pdb.set_trace()
-    except PageNotAnInteger:
-        students = paginator.page(1)
-    except EmptyPage:
-        students = paginator.page(paginator.num_pages)
-
+    students = pagination(request, 5, student_data)
     return render(request, template_name, {'students': students})
-    #return render(request, template_name, data)
     

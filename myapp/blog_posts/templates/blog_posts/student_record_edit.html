@@ -17,7 +17,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for post in object_list %}
+                    {% for post in students %}
                     <tr>
                         <td>
                             <strong> {{post.id}} </strong>
@@ -40,8 +40,29 @@
                     {% endfor %}
                 </tbody>
             </table>
-
-            <button button type="button " class="btn btn-link "><a href="http://127.0.0.1:8080/blog_posts/new ">Create new student record</a></button>
+            <div class="container">
+                {% if students.has_other_pages %}
+                <ul class="pagination">
+                {% if students.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ students.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span class="page-link">&laquo;</span></li>
+                {% endif %}
+                {% for i in students.paginator.page_range %}
+                    {% if students.number == i %}
+                    <li class="active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}" > {{ i }}</a></li>
+                    {% endif %} 
+                {% endfor %}
+                {% if students.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ students.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span class="page-link">&raquo;</span></li>
+                {% endif %}
+                </ul>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
