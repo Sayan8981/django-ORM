@@ -18,7 +18,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for post in object_list %}
+                    {% for post in students %}
                     <tr>
                         <td>
                             <strong> {{post.id}} </strong>
@@ -47,13 +47,35 @@
                 </tbody>
             </table>
             <div class="container">
+                {% if students.has_other_pages %}
                 <ul class="pagination">
+<<<<<<< HEAD
+                {% if students.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ students.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span class="page-link">&laquo;</span></li>
+                {% endif %}
+                {% for i in students.paginator.page_range %}
+                    {% if students.number == i %}
+                    <li class="active"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}" > {{ i }}</a></li>
+                    {% endif %} 
+                {% endfor %}
+                {% if students.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ students.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                    <li class="disabled"><span class="page-link">&raquo;</span></li>
+                {% endif %}
+=======
                     <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                     <li class="page-item"><a class="page-link" href="#">1</a></li>
                     <li class="page-item"><a class="page-link" href="#">2</a></li>
                     <li class="page-item active"><a class="page-link" href="#">3</a></li>
                     <li class="page-item"><a class="page-link" href="#">Next</a></li>
+>>>>>>> db454fe800e03e71b84b01fe5c26642694a077d0
                 </ul>
+                {% endif %}
             </div>
             <button button type="button " class="btn btn-link "><a href="http://127.0.0.1:8080/blog_posts/new">Create new student details</a></button>
         </div>

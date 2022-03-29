@@ -29,7 +29,11 @@ def post_list(request, template_name=student_list_template):
     #import pdb;pdb.set_trace()
     page = request.GET.get('page', 1)
 
+<<<<<<< HEAD
+    paginator = Paginator(student_list, 6)
+=======
     paginator = Paginator(student_list, 10)
+>>>>>>> db454fe800e03e71b84b01fe5c26642694a077d0
     try:
         students = paginator.page(page)
     except PageNotAnInteger:
@@ -38,10 +42,13 @@ def post_list(request, template_name=student_list_template):
         students = paginator.page(paginator.num_pages)
 
     return render(request, template_name, { 'students': students })
+<<<<<<< HEAD
+=======
 
 # def pagination(request):
 #     student_list = Student.objects.all()
 
+>>>>>>> db454fe800e03e71b84b01fe5c26642694a077d0
 
 def update_list(request, template_name=student_record_edit_template):
     posts = Student.objects.all()
@@ -127,8 +134,19 @@ def contact_view(request):
     return render(request, contact_template, context)
 
 def post_student_details(request, template_name=student_detail_template):
-    student_data = Student_details.objects.all()
-    data = {}
-    data['object_list'] = student_data
-    return render(request, template_name, data)
+    student_data = Student_details.objects.all().order_by('id')
+    # data = {}
+    # data['object_list'] = student_data
+    page = request.GET.get('page', 1)
+    paginator = Paginator(student_data, 5)
+    try:
+        students = paginator.page(page)
+        # import pdb;pdb.set_trace()
+    except PageNotAnInteger:
+        students = paginator.page(1)
+    except EmptyPage:
+        students = paginator.page(paginator.num_pages)
+
+    return render(request, template_name, {'students': students})
+    #return render(request, template_name, data)
     

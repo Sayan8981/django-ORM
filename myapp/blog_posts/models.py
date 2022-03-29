@@ -37,7 +37,7 @@ class Student_details(models.Model):
         ]
         
     def __str__(self):
-        return f"{self.father_name}, {self.mob_no} , {self.mother_name}, {self.address}"
+        return f" {self.mob_no} , {self.address} ,{self.father_name}, {self.mother_name}"
     
 class Student_Subject(models.Model):
     subject = models.CharField(blank = False, max_length = 20)
