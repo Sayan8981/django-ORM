@@ -23,6 +23,7 @@ contact_template = 'blog_posts/contact.html'
 contact_success_template ='blog_posts/contact_success.html'
 contact_unsuccess_template = 'blog_posts/contact_unsuccess.html'
 student_detail_template = 'blog_posts/student_details.html'
+student_details_create_template = 'blog_posts/post_student_details_form.html'
 
 def pagination(request, item_size, student_data):
     page = request.GET.get('page', 1)
@@ -36,6 +37,35 @@ def pagination(request, item_size, student_data):
         students = paginator.page(paginator.num_pages)
     return students    
 
+def student_details_view(request, template_name=student_details_create_template):
+    flag = True
+    context = { 'students': Student.objects.all() }
+    if request.method == 'POST':
+        #import pdb;pdb.set_trace()
+        id_ = request.POST['name']
+        father_name = request.POST['father_name']
+        mother_name = request.POST['mother_name']
+        mob_no = request.POST['mob_no']
+        address = request.POST['address']
+        print (id_, father_name, mother_name, mob_no, address)
+
+        record = Student_details.objects.all()
+        for data in record:
+            #import pdb;pdb.set_trace()
+            if data.father_name == father_name:
+                messages.error(request, 'Father_name already exists!')                 
+                flag = False
+                break
+              
+        try:    
+            if not messages or flag == True:
+                #import pdb;pdb.set_trace()
+                user = Student_details(student_id = id_, father_name = father_name, mother_name = mother_name, mob_no = mob_no, address = address)
+                user.save()
+        except Exception as error:
+            messages.error(request, str(error))
+    return render(request, template_name, context)
+
 def post_list(request, template_name=student_list_template):
     student_list = Student.objects.all()
     students = pagination(request, 6, student_list)
@@ -46,6 +76,10 @@ def update_list(request, template_name=student_record_edit_template):
     posts = Student.objects.all()
     students = pagination(request, 6, posts)
     return render(request, template_name, {'students': students})
+
+# def create_student_details(request, template_name = student_details_create_template):
+#     if request.method == 'POST':
+#         pass
 
 def post_create(request, template_name=student_record_create_template):
     flag = True
